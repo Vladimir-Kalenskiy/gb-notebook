@@ -23,10 +23,8 @@ public class UserView {
             if (com == Commands.EXIT) return;
             switch (com) {
                 case CREATE:
-                    String firstName = prompt("Имя: ");
-                    String lastName = prompt("Фамилия: ");
-                    String phone = prompt("Номер телефона: ");
-                    userController.saveUser(new User(firstName, lastName, phone));
+                    User u = createUser();
+                    userController.saveUser(u);
                     break;
                 case READ:
                     String id = prompt("Идентификатор пользователя: ");
@@ -39,18 +37,17 @@ public class UserView {
                     }
                     break;
                 case LIST:
-                    List<User> users = userController.getAllUsers();
-                    for(User user: users) {
+                    List<User> users = userController.getListsUsers();
+                    System.out.println();
+                    for (User user:
+                         users) {
                         System.out.println(user);
+                        System.out.println("*****************************");
                     }
                     break;
-                case UPDATE:
-                    long userId = Long.parseLong(prompt("Input id users: "));
-                    String updateName = prompt("Имя: ");
-                    String updateLastName = prompt("Фамилия: ");
-                    String updatePhone = prompt("Номер телефона: ");
-                    User updatedUser = new User(updateName, updateLastName, updatePhone);
-                    userController.userUpdate(userId, updatedUser);
+                case DELETE:
+                    String userID = prompt("Введите ID: ");
+                    userController.deleteUser(userID);
                     break;
             }
         }
@@ -60,5 +57,11 @@ public class UserView {
         Scanner in = new Scanner(System.in);
         System.out.print(message);
         return in.nextLine();
+    }
+    private User createUser() {
+        String firstName = prompt("Имя: ");
+        String lastName = prompt("Фамилия: ");
+        String phone = prompt("Номер телефона: ");
+        return new User(firstName, lastName, phone);
     }
 }

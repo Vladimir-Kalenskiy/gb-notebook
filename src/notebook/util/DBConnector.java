@@ -3,8 +3,13 @@ package notebook.util;
 import java.io.File;
 
 public class DBConnector {
-    public static final String DB_PATH = "db.txt";
-    public static void createDB() {
+    public String DB_PATH;
+
+    public DBConnector(String s) {this.DB_PATH = s;}
+
+    public DBConnector() {this("db.txt");}
+
+    public void createDB() {
         try {
             File db = new File(DB_PATH);
             if (db.createNewFile()) {
