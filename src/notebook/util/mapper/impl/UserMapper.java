@@ -7,7 +7,7 @@ public class UserMapper implements Mapper<User, String> {
     private final String separator;
     public UserMapper(String separator) { this.separator = separator;}
 
-    public UserMapper() {this(", ");}
+    public UserMapper() {this(" ");}
     @Override
     public String toInput(User user) {
         return String.join(separator, user.getId().toString(),

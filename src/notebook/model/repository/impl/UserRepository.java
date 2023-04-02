@@ -21,7 +21,7 @@ public class UserRepository implements GBRepository {
     }
 
     public UserRepository(DBConnector connector) {
-        this(connector, ", ");
+        this(connector, " ");
     }
 
     @Override
